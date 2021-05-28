@@ -1,6 +1,6 @@
 <?php 
-
-require '/var/www/html/wp-config.php';
+$basePath = '/Users/vaibhav/workspace/html';
+require $basePath.'/wp-config.php';
 include_once get_stylesheet_directory() . '/framework/core-functions.php';
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
@@ -53,7 +53,18 @@ if($action == 'create'){
 }else if($action == 'feed'){
 	$id_string = $_POST['id_string'];
 	feed_data($id_string);
-}else if($action == 'complete'){
+} else if($action == 'complete_and_write_to_sql') {
+	$to = $_POST['to'];
+	$from = $_POST['from'];
+  $data_to_write = $_POST['data'];
+  // echo '123';
+  // exit();
+	complete_chat_and_write_to_sql($to, $from, $data_to_write);
+} else if($action == 'add_offline_duration') {
+	$secs = $_POST['secs'];
+	$oc_id = $_POST['oc_id'];
+	add_offline_duration($secs, $oc_id);
+} else if($action == 'complete'){
 	$to = $_POST['to'];
 	$from = $_POST['from'];
 	complete_chat($to,$from);
@@ -148,13 +159,13 @@ function create($to, $from,$mail){
 		}
 	}
 		
-	if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
-		$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
-	}else if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
-		$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
+	if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
+		$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
+	}else if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
+		$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
 	}else{
-		$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
-		$fp = fopen('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json', 'w');
+		$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
+		$fp = fopen($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json', 'w');
 		fwrite($fp, '[]');
 		fclose($fp);
 		//echo 'file-created';
@@ -229,6 +240,7 @@ function create($to, $from,$mail){
 
 
 function write($from, $to, $mail, $msg, $filename,$file,$text_msg){
+  echo "Write";
 	date_default_timezone_set("Asia/Kolkata");
 	if(!$filename){
 		echo 'Temporary Error';
@@ -249,7 +261,7 @@ function write($from, $to, $mail, $msg, $filename,$file,$text_msg){
 			);
 		if(in_array($file_extension, $check_array)){
 		$new_file_name = uniqid('', true).'.'.$file_extension;
-		$file_destination = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/uploads/'.$new_file_name;
+		$file_destination = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/uploads/'.$new_file_name;
 		$file_url = get_site_url()."/wp-content/themes/thriive/horoscope_new/chat-renew/uploads/".$new_file_name;
 		move_uploaded_file($tmp_file_name, $file_destination);}else{echo 'File Must Be An Image';}
 		if(file_exists($file_destination)){echo 'file uploaded';$msg = "<img src= ".$file_url.">";}else{/*echo $file_destination;*/}
@@ -394,6 +406,8 @@ function read($from, $to, $arr_count,$filename,$mail_to){
 			//echo '<script>alert("yes")</script>';
 			for($i=$arr_count;$i<$file_contents_array_count;$i++){
 			//echo '<script>alert("yes")</script>';
+        print_r($file_contents_array);
+        
 				if($file_contents_array[$i]['from_user_id'] == $from){
 					
 					echo '<div class="message-left">'.$file_contents_array[$i]['chat_message'].'<p class="right_date">'.date('d-M', strtotime($file_contents_array[$i]['chat_time'])).' '.explode(':', explode(' ', $file_contents_array[$i]['chat_time'])[1])[0].':'.explode(':', explode(' ', $file_contents_array[$i]['chat_time'])[1])[1].'</p></div><p style="font-size:12px !important;margin:0 !important;padding-left:5px;padding-top:5px;">You</p><br>';
@@ -448,13 +462,13 @@ function active_status(){
 	for($i=0;$i<count($to);$i++){
 		$to[$i]= substr($to[$i], "21");
 		
-		if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to[$i].'_'.$from.'.json')){
-			$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to[$i].'_'.$from.'.json';
+		if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to[$i].'_'.$from.'.json')){
+			$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to[$i].'_'.$from.'.json';
 			$files_count[$i] = filesize($filename);
 			//echo '<script>to_count['.$i.'] = '.filesize($filename).';</script>';
 			$size_array[$to[$i]] = filesize($filename);
-		}else if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to[$i].'.json')){
-			$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to[$i].'.json';
+		}else if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to[$i].'.json')){
+			$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to[$i].'.json';
 			$files_count[$i] = filesize($filename);
 			//echo '<script>to_count['.$i.'] = '.filesize($filename).';</script>';
 			$size_array[$to[$i]] = filesize($filename);
@@ -536,8 +550,8 @@ function block_user($from,$to){
 /*
 function delete_chat($from, $to){
 	global $wpdb;
-	$file_address1 = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
-	$file_address2 = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
+	$file_address1 = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
+	$file_address2 = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
 	$del_array = array();
 	$del_array_count = 0;
 	if(file_exists($file_address1)){
@@ -601,10 +615,10 @@ function feed_data($id_string){
 	$filename_array = array();
 	for($i=0;$i<count($id_array);$i++){
 		$id_array[$i] = explode('_', $id_array[$i]);
-		if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][0].'_'.$id_array[$i][1].'.json')){
-			$filename_array[$i] = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][0].'_'.$id_array[$i][1].'.json';
-		}else if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][1].'_'.$id_array[$i][0].'.json')) {
-			$filename_array[$i] = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][1].'_'.$id_array[$i][0].'.json';
+		if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][0].'_'.$id_array[$i][1].'.json')){
+			$filename_array[$i] = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][0].'_'.$id_array[$i][1].'.json';
+		}else if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][1].'_'.$id_array[$i][0].'.json')) {
+			$filename_array[$i] = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$id_array[$i][1].'_'.$id_array[$i][0].'.json';
 		}
 	}					
 	//print_r($filename_array);	
@@ -694,10 +708,10 @@ function complete_chat($to,$from){
 	$res = $wpdb->query($query);
 
 
-	if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
-		$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
-	}else if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
-		$filename = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
+	if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
+		$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
+	}else if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
+		$filename = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
 	}
 
 	if($filename){
@@ -756,10 +770,10 @@ function accept($uid,$role){
 		$to = $res[$i]->tid;
 		$from = $uid;
 
-	if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
-		$filename_array[$i] = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
-	}else if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
-		$filename_array[$i] = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
+	if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
+		$filename_array[$i] = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
+	}else if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
+		$filename_array[$i] = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
 	}
 	$query = "SELECT complete_status FROM chat_block_users WHERE from_user_id=$to and to_user_id=$from OR from_user_id=$from and to_user_id=$to";
 	$complete_res = $wpdb->get_results($query);
@@ -786,10 +800,10 @@ function accept($uid,$role){
 		$to = $res[$i]->uid;
 		$from = $uid;
 		$count++;
-	if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
-		$filename_array[$i] = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
-	}else if(file_exists('/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
-		$filename_array[$i] = '/var/www/html/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
+	if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json')){
+		$filename_array[$i] = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$to.'_'.$from.'.json';
+	}else if(file_exists($basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json')){
+		$filename_array[$i] = $basePath.'/wp-content/themes/thriive/horoscope_new/chat-renew/json_files/'.$from.'_'.$to.'.json';
 	}
 	$query = "SELECT complete_status FROM chat_block_users WHERE from_user_id=$to and to_user_id=$from OR from_user_id=$from and to_user_id=$to";
 	$complete_res = $wpdb->get_results($query);
@@ -935,7 +949,7 @@ function accept_chat($to,$from,$oc_id){
 
 	}else{
 		$current_time = date('Y-m-d H:i:s');
-		$query = "UPDATE online_consultation SET uid_accept=1,no_of_sessions=0,uid_accept_time='$current_time' WHERE id=$oc_id";
+		$query = "UPDATE online_consultation SET uid_accept=1,no_of_sessions=0,uid_accept_time='$current_time', chat_start_time='$current_time' WHERE id=$oc_id";
 		if($wpdb->query($query)==1){
 			$chatblock = $wpdb->get_results("SELECT * FROM chat_block_users WHERE (to_user_id = $to AND from_user_id = $from) OR (to_user_id = $from AND from_user_id = $to) ORDER BY id DESC");
 			$cb_id = $chatblock[0]->id;
@@ -1009,7 +1023,7 @@ function get_curr_user(){
 			echo 't1,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id.','.$res[0]->def_warn;
 			send_accept_sms($res[0]->id,$res[0]->uid);
 		}else if($res[0]->tid_accept==1 AND $res[0]->uid_accept==1 AND $res[0]->remaining_session==1){
-			echo 't2,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id.','.$res[0]->uemail;
+			echo 't2,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id.','.$res[0]->uemail. ',' . $res[0]->chat_start_time . ',' . $res[0]->session_duration. ',' . $res[0]->added_duration_in_seconds . ',' . $res[0]->total_duration_in_secs;
 		}else if($res[0]->tid_accept==2){
 			echo 't3,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id.','.$res[0]->def_warn.','.$query;
 		}else if($res[0]->tid_accept=='-1'){
@@ -1026,14 +1040,13 @@ function get_curr_user(){
 		$res = $wpdb->get_results($query);
 		if(($res[0]->tid_accept==0 OR $res[0]->tid_accept=='-1') && count($res)>0){
 			echo 'u0,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id;
-			if(strlen($res[0]->call_uuid)<5){/*initiate_call('therapist',$res[0]->id,$res[0]->tid,$res[0]->uid);*/}
 		}else if($res[0]->uid_accept=='-2' AND $res[0]->remaining_session==1){
 			echo 'u5,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id;
 		}else if($res[0]->tid_accept==1 AND $res[0]->uid_accept==0){
 			echo 'u1,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id.','.$res[0]->temail;
 		}else if($res[0]->tid_accept==1 AND $res[0]->uid_accept==1 AND $res[0]->remaining_session==1){
 			send_accept_sms($res[0]->id,$res[0]->tid);
-			echo 'u2,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id;
+			echo 'u2,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id . ',' . $res[0]->chat_start_time . ',' . $res[0]->session_duration . ', '. $res[0]->added_duration_in_seconds . ',' . $res[0]->total_duration_in_secs;
 		}else if($res[0]->tid_accept=='-2' AND $res[0]->remaining_session==1){
 			echo 'u4,'.$res[0]->tid.','.$res[0]->uid.','.$res[0]->tname.','.$res[0]->uname.','.$res[0]->id;
 		}else{
@@ -1043,7 +1056,7 @@ function get_curr_user(){
 	}
 echo ',end';
 }
-	
+	  
 
 
 
@@ -1122,7 +1135,7 @@ function send_accept_sms($ocid,$uid){
 function browse_user($ocid,$action){
 	global $wpdb;
 	if($action==1){
-	$query = "UPDATE online_consultation SET tid_accept=2,uid_accept='-3',remaining_session=1 WHERE id=$ocid";
+	$query = "UPDATE online_consultation SET uid_accept='-3',remaining_session=1 WHERE id=$ocid";
 	echo $wpdb->query($query);	
 	}else if($action==2){
 	$query = "UPDATE online_consultation SET tid_accept=2,uid_accept='-3',remaining_session=1 WHERE id=$ocid";
@@ -1304,74 +1317,105 @@ function def_warn($ocid){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________INITIATE CALL_____________________________________________//
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function initiate_call($call_to,$ocid,$tid,$uid){
+function complete_chat_and_write_to_sql($to, $from, $json_data) {
 	global $wpdb;
-	if($call_to == 'therapist'){
-	$mobile = $mob_no = get_user_meta($tid)['mobile'][0];
-	$ivr_id = '1000057655';
+  $clean_data = json_decode(html_entity_decode(stripslashes ($json_data)));
+  $chat_end_time = date('Y-m-d H:i:s');
+  // var_dump($clean_data);
+  
+	$query = "SELECT complete_status,oc_id FROM chat_block_users WHERE from_user_id=$to and to_user_id=$from OR from_user_id=$from and to_user_id=$to";
+	$res = $wpdb->get_results($query);
+
+	if($res[0]->oc_id == NULL){
+		$query = "SELECT id FROM online_consultation WHERE (tid=$to and uid=$from OR tid=$from and uid=$to) AND action='chat' ORDER BY id DESC LIMIT 1";
+		echo $query;
+		$oc_res = $wpdb->get_results($query);
+		if(count($oc_res)>0){
+			$oc_id = $oc_res[0]->id;
+		}
+	}else{
+		$oc_id = $res[0]->oc_id;
+	}
+	//print_r(count($res));
+	if(count($res)>0){
+		//$oc_id = $res[0]->oc_id;
+		$query = "UPDATE chat_block_users SET complete_status = 1,oc_id=$oc_id WHERE to_user_id=$from and from_user_id=$to OR from_user_id=$from and to_user_id=$to";
+		$res = $wpdb->query($query);
+	echo $res;
+	} else {
+		$query = "INSERT INTO `chat_block_users`(`to_user_id`, `from_user_id`,`block_status`,`block_details`,`oc_id`,`complete_status`) VALUES ('$to','$from',0,'none','$oc_id',1)";
+		$res = $wpdb->query($query);
+		echo $res;
 	}
 
-	if(1==2){
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-	  CURLOPT_URL => 'https://kpi.knowlarity.com/Basic/v1/account/call/campaign',
-	  CURLOPT_RETURNTRANSFER => true,
-	  CURLOPT_ENCODING => '',
-	  CURLOPT_MAXREDIRS => 10,
-	  CURLOPT_TIMEOUT => 0,
-	  CURLOPT_FOLLOWLOCATION => true,
-	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	  CURLOPT_CUSTOMREQUEST => 'POST',
-	  CURLOPT_POSTFIELDS =>'{
-	"ivr_id":"1000057655",
-	"additional_number":"+917999886050",
-	"timezone":"Asia/Kolkata",
-	"priority":8,
-	"start_time":"2021-04-26 12:30",
-	"call_scheduling_start_time":"09:00",
-	"call_scheduling_stop_time":"23:00",
-	"is_transactional":1,
-	"k_number":"+918035387035",
-	"call_scheduling": "[1, 1, 1, 1, 1, 1, 1]",
-	"end_time":"2021-04-26 13:55"
-	}',
-	  CURLOPT_HTTPHEADER => array(
-	    'Content-Type: application/json',
-	    'x-api-key: OuiqbzxM0B9CvqFFhXf2W8vA5DA78PEO6trfIjsI',
-	    'Authorization: 28637081-d7a7-4bf5-96aa-c79fbf2aba42'
-	  ),
-	));
+	$query = "SELECT oc_id FROM chat_block_users WHERE from_user_id=$to and to_user_id=$from OR from_user_id=$from and to_user_id=$to ORDER BY id DESC LIMIT 1";
+	$res = $wpdb->get_results($query);
+	$ocid = $res[0]->oc_id;
 
-	$response = curl_exec($curl);
-
-	curl_close($curl);
-	echo $response;
-	}
-
-	$response = '{"order_id": 33382510, "result": "placed order successfully", "status_code": 1}';
-	$response2 = '{"result": "Campaign cannot be created! You have entered a parameter - start_time less than the current time. Kindly enter it correctly and try again.", "status_code": 0}';
-	$response = json_decode($response, true);
-
-	if($response['status_code']==1){
-		$order_id = $response['order_id'];
-		$query = "UPDATE online_consultation SET call_id=$order_id WHERE id=$ocid AND action='chat'";
-		$wpdb->query($query);
-	}
+	$query = "UPDATE online_consultation SET remaining_session = 0, chat_end_time='$chat_end_time' WHERE id=$ocid";
+	$res = $wpdb->query($query);
 
 
+  if (count($clean_data)) {
+    // echo '1';
+    // echo count($clean_data);
+    $query_string = '';
 
+    for ($i = 0; $i < count($clean_data); $i++) {
+      
+      if ($clean_data[$i]->sender == $from ) {
+      	$to_user_id = $to;
+      } else {
+      	$to_user_id = $from;
+      }
+
+      // echo "cool " . $clean_data[$i]->img;
+
+      $timestamp = date( "Y-m-d H:i:s", strtotime($clean_data[$i]->timestamp) );
+      $query_string .= '("'.$clean_data[$i]->sender.'","'.$to_user_id.'","'.$clean_data[$i]->message.'","'.$timestamp.'","' .$oc_id. '","' . $clean_data[$i]->img . '"),';
+    }
+
+    $query_string = rtrim($query_string, ',');
+    // echo $query_string;
+		$query = "INSERT INTO chat_message_details(from_user_id, to_user_id, chat_message,chat_time,oc_id, file) VALUES $query_string";
+		$query_status = $wpdb->query($query);
+
+  } else {
+    // when no conversation has happened between 2 parties
+    // 
+
+  }
 
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________INITIATE CALL_____________________________________________//
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+// Add offline duration to session timer
+// 
+
+function add_offline_duration($secs, $oc_id) {
+
+	global $wpdb;
+
+	$query = "UPDATE online_consultation SET total_duration_in_secs=total_duration_in_secs+".$secs.", added_duration_in_seconds=". $secs ." WHERE id = ". $oc_id;
+
+	// echo $query;
+
+	$res = $wpdb->query($query);
+	
+	$response->update_res = $res;
+	
+	$read_query = "SELECT * FROM online_consultation WHERE id=".$oc_id;
+	// echo $read_query;
+	
+	$result = $wpdb->get_results($read_query);
+	// var_dump($result);
+	$response->added_seconds = $result[0]->added_duration_in_seconds;
+
+	$json_response = json_encode($response);
+	echo $json_response;
+}
+
+
+
+
+  
