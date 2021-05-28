@@ -141,7 +141,7 @@ input:focus{
 }
 #myInput {
   box-sizing: border-box;
-  background-image: url('https://www.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/searchicon.png');
+  background-image: url('https://beta2.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/searchicon.png');
   background-position: 10px 5px;
   background-repeat: no-repeat;
   font-size: 16px;
@@ -434,34 +434,34 @@ position: relative;
   <input onclick="myFunction('drop')" class="dropbtn" style="z-index:9;" type="text" placeholder="Search by Issues / Therapies" id="myInput" onkeyup="filterFunction()">
   <div id="myDropdown" class="dropdown-content">
    <!-- <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">-->
-    <a href="https://www.thriive.in/ailment/relationship-issues">Relationship Issues</a>
-    <a href="https://www.thriive.in/ailment/anxiety-disorders">Anxiety & Stress</a>
-    <a href="https://www.thriive.in/ailment/anger-management">Anger Management</a>
-    <a href="https://www.thriive.in/ailment/family-issues">Family Issues</a>
-    <a href="https://www.thriive.in/ailment/career-issues">Career Issues</a>
-    <a href="https://www.thriive.in/ailment/lack-of-confidence">Lack of Confidence</a>
-    <a href="https://www.thriive.in/ailment/de-motivation">De-motivation</a>
-    <a href="https://www.thriive.in/ailment/lack-of-clarity">Lack of Clarity</a>
-    <a href="https://www.thriive.in/ailment/phobia">Phobia</a>
-    <a href="https://www.thriive.in/ailment/addiction-issues">Addiction Issues</a>
-    <a href="https://www.thriive.in/ailment/clinical-depression">Clinical Depression</a>
-    <a href="https://www.thriive.in/ailment/emotional-fatigue">Emotional Fatigue</a>
-    <a href="https://www.thriive.in/ailment/childhood-trauma">Childhood trauma</a>
-    <a href="https://www.thriive.in/ailment/sexual-issues">Sexual Issue</a>
-    <a href="https://www.thriive.in/ailment/sexual-dysfunction">Dysfunction</a>
-    <a href="https://www.thriive.in/ailment/premature-ejaculation">Premature Ejaculation</a>
-    <a href="https://www.thriive.in/ailment/erectile-dysfunction">Erectile Dysfunction</a>
-    <a href="https://www.thriive.in/ailment/impotency">Impotency</a>
-    <a href="https://www.thriive.in/ailment/sex-problems">Sex Problems</a>
-    <a href="https://www.thriive.in/ailment/sexual-arousal-disorders">Sexual Arousal Disorder</a>
-	<a href="https://www.thriive.in/counseling">Counseling</a>
-	<a href="https://www.thriive.in/talk-to-best-life-coach-online">Life Coach</a>
-	<a href="https://www.thriive.in/hypnotherapy">Hypno Therapy</a>
-	<a href="https://www.thriive.in/past-life-regression-therapy">Past Life Regression</a>
-	<a href="https://www.thriive.in/inner-child-healing">Inner Child Healing</a>
-	<a href="https://www.thriive.in/emotional-freedom-technique-eft">EFT - Emotional Freedom Technique</a>
-	<a href="https://www.thriive.in/talk-to-best-tarot-card-reader-online">Tarot Card Reading</a>
-	<a href="https://www.thriive.in/find-online-the-best-sex-therapist">Sex Therapy</a>
+    <a href="https://beta2.thriive.in/ailment/relationship-issues">Relationship Issues</a>
+    <a href="https://beta2.thriive.in/ailment/anxiety-disorders">Anxiety & Stress</a>
+    <a href="https://beta2.thriive.in/ailment/anger-management">Anger Management</a>
+    <a href="https://beta2.thriive.in/ailment/family-issues">Family Issues</a>
+    <a href="https://beta2.thriive.in/ailment/career-issues">Career Issues</a>
+    <a href="https://beta2.thriive.in/ailment/lack-of-confidence">Lack of Confidence</a>
+    <a href="https://beta2.thriive.in/ailment/de-motivation">De-motivation</a>
+    <a href="https://beta2.thriive.in/ailment/lack-of-clarity">Lack of Clarity</a>
+    <a href="https://beta2.thriive.in/ailment/phobia">Phobia</a>
+    <a href="https://beta2.thriive.in/ailment/addiction-issues">Addiction Issues</a>
+    <a href="https://beta2.thriive.in/ailment/clinical-depression">Clinical Depression</a>
+    <a href="https://beta2.thriive.in/ailment/emotional-fatigue">Emotional Fatigue</a>
+    <a href="https://beta2.thriive.in/ailment/childhood-trauma">Childhood trauma</a>
+    <a href="https://beta2.thriive.in/ailment/sexual-issues">Sexual Issue</a>
+    <a href="https://beta2.thriive.in/ailment/sexual-dysfunction">Dysfunction</a>
+    <a href="https://beta2.thriive.in/ailment/premature-ejaculation">Premature Ejaculation</a>
+    <a href="https://beta2.thriive.in/ailment/erectile-dysfunction">Erectile Dysfunction</a>
+    <a href="https://beta2.thriive.in/ailment/impotency">Impotency</a>
+    <a href="https://beta2.thriive.in/ailment/sex-problems">Sex Problems</a>
+    <a href="https://beta2.thriive.in/ailment/sexual-arousal-disorders">Sexual Arousal Disorder</a>
+	<a href="https://beta2.thriive.in/counseling">Counseling</a>
+	<a href="https://beta2.thriive.in/talk-to-best-life-coach-online">Life Coach</a>
+	<a href="https://beta2.thriive.in/hypnotherapy">Hypno Therapy</a>
+	<a href="https://beta2.thriive.in/past-life-regression-therapy">Past Life Regression</a>
+	<a href="https://beta2.thriive.in/inner-child-healing">Inner Child Healing</a>
+	<a href="https://beta2.thriive.in/emotional-freedom-technique-eft">EFT - Emotional Freedom Technique</a>
+	<a href="https://beta2.thriive.in/talk-to-best-tarot-card-reader-online">Tarot Card Reading</a>
+	<a href="https://beta2.thriive.in/find-online-the-best-sex-therapist">Sex Therapy</a>
   </div>
 </div>
 <script>
@@ -519,23 +519,23 @@ function filterFunction() {
 <p class="hpledesc">Talk to India’s top verified holistic mental health experts. Thriive your way to mental balance.</p>
 
 <div class="col-md-12 col-xs-12 hptopexp hptoptexp" style="margin-top: 10px;">
-<a href="https://www.thriive.in/talk-to-best-tarot-card-reader-online">
+<a href="https://beta2.thriive.in/talk-to-best-tarot-card-reader-online">
 <p class="hpexptitle">Talk to Tarot experts</p>
-<img class="hpexpimag hpexptimg"  src="https://www.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/Tarot-Icons-01.svg" alt="Talk to Tarot experts" title="Talk to Tarot experts"/></a>
+<img class="hpexpimag hpexptimg"  src="https://beta2.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/Tarot-Icons-01.svg" alt="Talk to Tarot experts" title="Talk to Tarot experts"/></a>
 </div>
 
 <div class="col-md-12 col-xs-12 hptopexp hptopcexp">
-<a href="https://www.thriive.in/consult-covid-counselor-online">
+<a href="https://beta2.thriive.in/consult-covid-counselor-online">
 <p class="hpexptitle">Free Counseling for Covid</p>
-<img class="hpexpimag hpexpcimg"  src="https://www.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/counselor-Icons-02.svg" alt="Free Counseling for Covid" title="Free Counseling for Covid"/></a>
+<img class="hpexpimag hpexpcimg"  src="https://beta2.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/counselor-Icons-02.svg" alt="Free Counseling for Covid" title="Free Counseling for Covid"/></a>
 </div>
 
 
 
 <div class="col-md-12 col-xs-12 hptopexp hptopsexp" style="margin-bottom: 10px;">
-<a href="https://www.thriive.in/find-online-the-best-sex-therapist">
+<a href="https://beta2.thriive.in/find-online-the-best-sex-therapist">
 <p class="hpexptitle">Talk to Sex Therapists</p>
-<img class="hpexpimag hpexpsimg" src="https://www.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/sex-thrapy-Icons-03.svg"/ alt="Talk to Sex Therapists" title="Talk to Sex Therapists"></a>
+<img class="hpexpimag hpexpsimg" src="https://beta2.thriive.in/wp-content/themes/thriive/assets/images/newsoulimg/sex-thrapy-Icons-03.svg"/ alt="Talk to Sex Therapists" title="Talk to Sex Therapists"></a>
 </div>
 
 
@@ -568,7 +568,7 @@ function filterFunction() {
                 <span class="btn-consult">Get Started</span>
               </div>
             </div>
-            <a href="https://www.thriive.in/ailment/relationship-issues" class="counsellink"></a>
+            <a href="https://beta2.thriive.in/ailment/relationship-issues" class="counsellink"></a>
         </li>
         <li class="">
             <div class="bgholder family-therapy">
@@ -585,7 +585,7 @@ function filterFunction() {
                 <span class="btn-consult">Get Started</span>
               </div>
             </div>
-            <a href="https://www.thriive.in/talk-to-best-life-coach-online" class="counsellink"></a>
+            <a href="https://beta2.thriive.in/talk-to-best-life-coach-online" class="counsellink"></a>
         </li>
         <li class="">
             <div class="bgholder stress-couching">
@@ -602,7 +602,7 @@ function filterFunction() {
                 <span class="btn-consult">Get Started</span>
               </div>
             </div>
-            <a href="https://www.thriive.in/find-online-the-best-sex-therapist" class="counsellink"></a>
+            <a href="https://beta2.thriive.in/find-online-the-best-sex-therapist" class="counsellink"></a>
         </li>
         <li class="">
             <div class="bgholder family-therapy">
@@ -618,7 +618,7 @@ function filterFunction() {
                 <span class="btn-consult">Get Started</span>
               </div>
             </div>
-            <a href="https://www.thriive.in/ailment/parenting-teen" class="counsellink"></a>
+            <a href="https://beta2.thriive.in/ailment/parenting-teen" class="counsellink"></a>
         </li>
 
 
@@ -639,7 +639,7 @@ function filterFunction() {
       <ul id="sectionlist1" class="row px-3">
     
         <li class="sectionitem col-6 col-sm-3">
-          <a href="https://www.thriive.in/counseling">
+          <a href="https://beta2.thriive.in/counseling">
             <figure>
               <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/counselling-Icons-04.svg'; ?>" alt="Counseling" title="Counseling">
               <figcaption>Counseling</figcaption>
@@ -648,7 +648,7 @@ function filterFunction() {
         </li>
 
       <li class="sectionitem col-6 col-sm-3">
-      <a href="https://www.thriive.in/talk-to-best-life-coach-online">
+      <a href="https://beta2.thriive.in/talk-to-best-life-coach-online">
         <figure>
         <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/lifecoach-Icons-05.svg'; ?>" alt="Life Coaching" title="Life Coaching">
         <figcaption>Life Coaching</figcaption>
@@ -657,7 +657,7 @@ function filterFunction() {
       </li>   
       
         <li class="sectionitem col-6 col-sm-3">
-          <a href="https://www.thriive.in/past-life-regression-therapy">
+          <a href="https://beta2.thriive.in/past-life-regression-therapy">
             <figure>
               <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/plr-Icons-06.svg'; ?>" alt="Past Life Regression" title="Past Life Regression">
               <figcaption>Past Life Regression</figcaption>
@@ -666,7 +666,7 @@ function filterFunction() {
         </li>
     
         <li class="sectionitem col-6 col-sm-3">
-          <a href="https://www.thriive.in/hypnotherapy">
+          <a href="https://beta2.thriive.in/hypnotherapy">
             <figure>
               <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/hyphontherapy-Icons-07.svg'; ?>" alt="Hypnotherapy" title="Hypnotherapy">
               <figcaption>Hypnotherapy</figcaption>
@@ -675,7 +675,7 @@ function filterFunction() {
         </li>
     
           <li class="sectionitem col-6 col-sm-3">
-            <a href="https://www.thriive.in/inner-child-healing">
+            <a href="https://beta2.thriive.in/inner-child-healing">
               <figure>
                 <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/inner-child-Icons-08.svg'; ?>" alt="Innerchild Healing" title="Innerchild Healing">
                 <figcaption>Innerchild Healing</figcaption>
@@ -684,7 +684,7 @@ function filterFunction() {
           </li>
       
     <li class="sectionitem col-6 col-sm-3">
-      <a href="https://www.thriive.in/emotional-freedom-technique-eft">
+      <a href="https://beta2.thriive.in/emotional-freedom-technique-eft">
       <figure>
       <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/eft-Icons-09.svg'; ?>" alt="EFT - Emotional Freedom Technique" title="EFT - Emotional Freedom Technique">
       <figcaption>EFT - Emotional Freedom Technique</figcaption>
@@ -693,7 +693,7 @@ function filterFunction() {
     </li>
 
         <li class="sectionitem col-6 col-sm-3">
-          <a href="https://www.thriive.in/find-online-the-best-sex-therapist">
+          <a href="https://beta2.thriive.in/find-online-the-best-sex-therapist">
             <figure>
               <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/sex-Icons-10.svg'; ?>" alt="Sex Therapy" title="Sex Therapy">
               <figcaption>Sex Therapy</figcaption>
@@ -706,7 +706,7 @@ function filterFunction() {
 
 
       <li class="sectionitem col-6 col-sm-3">
-            <a href="https://www.thriive.in/talk-to-best-tarot-card-reader-online">
+            <a href="https://beta2.thriive.in/talk-to-best-tarot-card-reader-online">
               <figure>
                 <img src="<?php echo get_template_directory_uri() .'/assets/images/newsoulimg/Icons-01.png'; ?>" alt="Tarot Card Reading" title="Tarot Card Reading">
                 <figcaption>Tarot Card</figcaption>
@@ -824,17 +824,17 @@ function filterFunction() {
       <section class="mediawrapper">
         <aside class="mediaitem text-center" style="max-height: 60px;border-radius: 0px;">
     <a href="https://yourstory.com/herstory/2019/07/digital-platform-thriive-mental-wellness" target="_blank" rel="nofollow" tabindex="0">
-                   <img title="" alt="" class="img-responsive" src="https://www.thriive.in/wp-content/uploads/2019/11/media-05.jpg" style="max-width: 100%;">
+                   <img title="" alt="" class="img-responsive" src="https://beta2.thriive.in/wp-content/uploads/2019/11/media-05.jpg" style="max-width: 100%;">
     </a>
     </aside>
         <aside class="mediaitem text-center" style="max-height: 60px;border-radius: 0px;">
       <a href="https://m.dailyhunt.in/news/india/english/yourstory-epaper-yourstory/this+digital+platform+believes+the+pursuit+of+wellness+is+important+to+thriive+in+the+modern+world-newsid-125052726" target="_blank" rel="nofollow" tabindex="0">
-                   <img title="" alt="" class="img-responsive" src="https://www.thriive.in/wp-content/uploads/2019/11/media-02.jpg" style="max-width: 100%;">
+                   <img title="" alt="" class="img-responsive" src="https://beta2.thriive.in/wp-content/uploads/2019/11/media-02.jpg" style="max-width: 100%;">
       </a>
     </aside>
         <aside class="mediaitem text-center" style="max-height: 60px;border-radius: 0px;">
       <a href="https://indianexpress.com/article/parenting/health-fitness/meditation-benefits-children-energy-5835255/" target="_blank" rel="nofollow" tabindex="0">
-                   <img title="" alt="" class="img-responsive" src="https://www.thriive.in/wp-content/uploads/2019/11/media-04.jpg" style="max-width: 100%;">
+                   <img title="" alt="" class="img-responsive" src="https://beta2.thriive.in/wp-content/uploads/2019/11/media-04.jpg" style="max-width: 100%;">
       </a>
     </aside>
       </section>
