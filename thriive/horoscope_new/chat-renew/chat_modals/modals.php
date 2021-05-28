@@ -1,4 +1,28 @@
-<script src="<?php echo get_site_url();?>/wp-content/themes/thriive/horoscope_new/chat-renew/scripts/chat-script.js?v=20210423.13"></script>
+<!-- The core Firebase JS SDK   is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyD2FP1evAtrtUpSeUwfNB8EwB99uJJAQZw",
+    authDomain: "thriive-4bbd3.firebaseapp.com",
+    databaseURL: "https://thriive-4bbd3-default-rtdb.firebaseio.com",
+    projectId: "thriive-4bbd3",
+    storageBucket: "gs://thriive-4bbd3.appspot.com",
+    messagingSenderId: "228923631497",
+    appId: "1:228923631497:web:6b71a8d7b360c27c87a358",
+    measurementId: "G-3E78629LN0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script src="<?php echo get_site_url();?>/wp-content/themes/thriive/horoscope_new/chat-renew/scripts/chat-script.js?v=20210420.27"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+
 <style>
   .accept_modal,.accept_modal_timer{
     width:100%;
@@ -11,7 +35,7 @@
   }
   .accept_modal1{
     width:100%;
-    height: 26%;
+    height: 25%;
     position: fixed;
     bottom:0;
     background-color:#19194B;   
@@ -50,11 +74,6 @@
 p.timer_text,p.timer_text1 {
    color: #fff;
    font-size: 14px;
-   text-align: center;
-}
-p.timer_text1 {
-   color: #fff;
-   font-size: 18px;
    text-align: center;
 }
 .mesgt {
@@ -243,10 +262,10 @@ if($curr_role=='sub'){
     <button class="wait_btn session-btn" disabled="true" data-ocid="0" onclick="user_waiting(this.dataset.ocid);" style="display: none;">Wait Again</button>
     </div>
     <div class="col-md-2 col-xs-2 msutn">
-    <button class="browse_btn session-btn" disabled="false" onclick="user_browsing(this.dataset.ocid,this.dataset.action);this.style.backgroundColor='#fff';" data-ocid='0' data-action="0">Change Therapist</button>
+    <button class="browse_btn session-btn" disabled="true" onclick="user_browsing(this.dataset.ocid,this.dataset.action);" data-ocid='0' data-action="0">Change Therapist</button>
     </div>
     <div class="col-md-2 col-xs-2 msutn">
-    <button class="browse_btn session-btn" disabled="false" onclick="take_later(this.dataset.ocid,this.dataset.action);this.style.backgroundColor='#fff';" data-ocid='0' data-action="0">Take Session Later</button>
+    <button class="browse_btn session-btn" disabled="true" onclick="take_later(this.dataset.ocid,this.dataset.action);" data-ocid='0' data-action="0">Take Session Later</button>
     </div>
     </div>
   </div>
